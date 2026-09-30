@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nusrat Anwar — AI/ML Engineer</title>
+<meta name="description" content="Nusrat Anwar — AI/ML engineer. RAG systems, imbalanced classification, computer vision. Five projects with measured results.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#EDF1F3;
+  --panel:#FFFFFF;
+  --ink:#16292F;
+  --ink-2:#4A6570;
+  --ink-3:#7E959E;
+  --line:#D2DCE0;
+  --line-2:#E4EBEE;
+  --teal:#0F6E6E;
+  --teal-bg:#E2EFEE;
+  --amber:#9A6412;
+  --amber-bg:#FBF3E4;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:calc(env(safe-area-inset-top,0px) + 20px);-webkit-text-size-adjust:100%}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:"Archivo",system-ui,-apple-system,sans-serif;
+  font-size:16px;line-height:1.55;
+}
+p{margin:0 0 14px}
+a{color:var(--teal)}
+a:focus-visible{outline:2px solid var(--teal);outline-offset:3px}
+
+.shell{
+  max-width:1120px;margin:0 auto;padding:34px 22px 0;
+  display:grid;grid-template-columns:252px 1fr;gap:38px;align-items:start;
+}
+
+/* ============ LEFT RAIL ============ */
+.rail{position:sticky;top:30px}
+.rail .id{background:var(--panel);border:1px solid var(--line);padding:22px 20px}
+.rail h1{font-size:25px;font-weight:700;letter-spacing:-0.02em;line-height:1.15;margin:0 0 3px}
+.rail .role{font-size:14px;font-weight:600;color:var(--teal);margin:0 0 12px}
+.rail .blurb{font-family:"Source Serif 4",Georgia,serif;font-size:15px;line-height:1.5;color:var(--ink-2);margin:0 0 16px}
+.rail .links{border-top:1px solid var(--line-2);padding-top:13px;font-size:14px;display:grid;gap:6px}
+.rail .links a{text-decoration:none;border-bottom:1px solid rgba(15,110,110,.28);width:fit-content;word-break:break-all}
+.rail .links a:hover{border-bottom-color:var(--teal)}
+.rail .links span{color:var(--ink-3)}
+
+.status{margin-top:12px;background:var(--teal-bg);border:1px solid #C3DEDB;padding:11px 14px;font-size:13.5px;font-weight:500;color:#0C5A5A}
+.status b{display:block;font-weight:700;margin-bottom:2px}
+
+nav{margin-top:12px;background:var(--panel);border:1px solid var(--line);padding:14px 18px}
+nav p{font-size:11.5px;font-weight:700;color:var(--ink-3);letter-spacing:.06em;margin:0 0 9px}
+nav ol{list-style:none;margin:0;padding:0;font-size:14px;display:grid;gap:7px;counter-reset:n}
+nav ol li{counter-increment:n;display:flex;gap:10px}
+nav ol li::before{content:counter(n,decimal-leading-zero);color:var(--ink-3);font-variant-numeric:tabular-nums;font-size:12.5px;padding-top:1px}
+nav a{text-decoration:none;color:var(--ink-2)}
+nav a:hover{color:var(--teal)}
+
+/* ============ MAIN ============ */
+main{min-width:0;padding-bottom:70px}
+.block{background:var(--panel);border:1px solid var(--line);padding:26px 28px;margin:0 0 20px}
+.block > h2{
+  font-size:12px;font-weight:700;letter-spacing:.07em;color:var(--ink-3);
+  margin:0 0 16px;padding-bottom:11px;border-bottom:1px solid var(--line-2);
+  display:flex;justify-content:space-between;gap:14px;align-items:baseline;
+}
+.block > h2 em{font-style:normal;font-weight:500;letter-spacing:0;color:var(--ink-3);font-size:12.5px}
+
+.lede{font-family:"Source Serif 4",Georgia,serif;font-size:19px;line-height:1.55;color:var(--ink);margin:0 0 14px;max-width:60ch}
+.prose{font-family:"Source Serif 4",Georgia,serif;font-size:16.5px;line-height:1.62;color:var(--ink-2);max-width:66ch}
+.prose strong{color:var(--ink);font-weight:600}
+
+.phead{display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline;margin:0 0 4px}
+.phead h3{font-size:24px;font-weight:700;letter-spacing:-0.02em;margin:0}
+.badge{font-size:11.5px;font-weight:700;letter-spacing:.05em;color:#0C5A5A;background:var(--teal-bg);border:1px solid #C3DEDB;padding:3px 8px}
+.pmeta{font-size:13.5px;color:var(--ink-3);margin:0 0 16px}
+
+.insight{
+  background:var(--amber-bg);border-left:3px solid var(--amber);
+  padding:15px 18px;margin:18px 0 0;font-size:15.5px;color:var(--ink-2);
+  max-width:68ch;line-height:1.55;
+}
+.insight b{color:var(--ink);font-weight:700}
+
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(122px,1fr));border:1px solid var(--line-2);margin:20px 0 0}
+.stats div{padding:13px 16px;border-right:1px solid var(--line-2)}
+.stats div:last-child{border-right:0}
+.stats .n{font-size:25px;font-weight:700;letter-spacing:-0.02em;line-height:1.1;font-variant-numeric:tabular-nums;margin:0}
+.stats .l{font-size:12.5px;color:var(--ink-3);margin:3px 0 0;line-height:1.35}
+
+.pipe{display:grid;gap:9px;margin:4px 0 0}
+.stage{display:grid;grid-template-columns:110px 1fr;gap:16px;border:1px solid var(--line-2);border-left:3px solid var(--teal);padding:12px 15px;align-items:start}
+.stage .tag{font-size:11.5px;font-weight:700;letter-spacing:.05em;color:var(--teal);padding-top:2px}
+.stage .what{font-size:15px;font-weight:600;margin:0 0 2px}
+.stage .how{font-size:13.5px;color:var(--ink-3);margin:0}
+
+.scroll{overflow-x:auto;margin:20px 0 0}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:420px}
+th{text-align:left;font-weight:700;font-size:11.5px;letter-spacing:.05em;color:var(--ink-3);padding:0 16px 9px 0;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:10px 16px 10px 0;border-bottom:1px solid var(--line-2);color:var(--ink-2);vertical-align:top}
+td:first-child{color:var(--ink);font-weight:500}
+td.num{font-variant-numeric:tabular-nums;color:var(--ink);font-weight:600;white-space:nowrap}
+tr.best td{background:var(--teal-bg)}
+tr.best td.num{color:#0C5A5A}
+caption{caption-side:bottom;text-align:left;font-size:13px;color:var(--ink-3);padding-top:12px;line-height:1.5}
+
+.stack{font-size:13px;color:var(--ink-3);margin:20px 0 0;padding-top:14px;border-top:1px solid var(--line-2)}
+.outlinks{font-size:14.5px;font-weight:600;margin:10px 0 0;display:flex;flex-wrap:wrap;gap:6px 22px}
+.outlinks a{text-decoration:none;border-bottom:1px solid rgba(15,110,110,.3)}
+.outlinks a:hover{border-bottom-color:var(--teal)}
+.outlinks .todo{color:var(--ink-3);font-weight:400}
+
+.matrix{display:grid;grid-template-columns:repeat(auto-fit,minmax(232px,1fr));gap:20px 30px}
+.matrix h3{font-size:12px;font-weight:700;letter-spacing:.05em;color:var(--teal);margin:0 0 7px}
+.matrix p{font-size:14.5px;color:var(--ink-2);margin:0;line-height:1.55}
+
+footer{border-top:1px solid var(--line);padding:18px 0 40px;font-size:13.5px;color:var(--ink-3);display:flex;flex-wrap:wrap;gap:8px 20px}
+footer a{text-decoration:none}
+
+@media (max-width:860px){
+  .shell{grid-template-columns:1fr;gap:20px;padding-top:22px}
+  .rail{position:static}
+  nav{display:none}
+  .block{padding:22px 20px}
+  .stage{grid-template-columns:1fr;gap:4px}
+  .stage .tag{padding-top:0}
+  .lede{font-size:18px}
+}
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+  <aside class="rail">
+    <div class="id">
+      <h1>Nusrat Anwar</h1>
+      <p class="role">AI / ML Engineer</p>
+      <p class="blurb">I build systems that answer from real data, measure whether they got it right, and can name what they get wrong.</p>
+      <div class="links">
+        <a href="https://github.com/nusukhan">github.com/nusukhan</a>
+        <a href="mailto:nusratanwar000@gmail.com">nusratanwar000@gmail.com</a>
+        <span>Pakistan · remote or on-site</span>
+      </div>
+    </div>
+
+    <div class="status">
+      <b>Available for work</b>
+      AI/ML engineering roles, full-time or contract
+    </div>
+
+    <nav>
+      <p>PROJECTS</p>
+      <ol>
+        <li><a href="#rag">RAG knowledge system</a></li>
+        <li><a href="#fraud">Fraud detection</a></li>
+        <li><a href="#laptop">Price prediction</a></li>
+        <li><a href="#palm">Palm tree counter</a></li>
+        <li><a href="#digits">Digit recognition</a></li>
+        <li><a href="#fruit">Fruit classification</a></li>
+        <li><a href="#skills">Skills</a></li>
+      </ol>
+    </nav>
+  </aside>
+
+  <main>
+
+    <section class="block">
+      <h2>OVERVIEW <em>Six projects, each one measured</em></h2>
+      <p class="lede">A model that runs is not the same as a model that works. Every project below reports the numbers that prove it — and the limitation I found while looking for them.</p>
+      <div class="prose">
+        <p>The work spans retrieval-augmented generation, imbalanced classification, regression with deployment, object detection and computer vision. Across all six the method is the same: build it, measure it against a held-out set, compare it to a baseline, and report what the measurement actually said rather than what I hoped it would.</p>
+      </div>
+      <div class="stats">
+        <div><p class="n">6</p><p class="l">Projects, all evaluated</p></div>
+        <div><p class="n">2</p><p class="l">Deployed as a live app or API</p></div>
+        <div><p class="n">12</p><p class="l">Weeks on the flagship build</p></div>
+      </div>
+    </section>
+
+    <!-- 1 — RAG -->
+    <section class="block" id="rag">
+      <h2>PROJECT 01 <em>Retrieval-augmented generation</em></h2>
+
+      <div class="phead">
+        <h3>RAG Knowledge Extraction System</h3>
+        <span class="badge">ALL 12 DELIVERABLES ACCEPTED</span>
+      </div>
+      <p class="pmeta">Parallax Labs · AI/ML Engineer Internship · Python, ChromaDB, FastAPI, spaCy, scikit-learn</p>
+
+      <p class="lede">A language model asked a factual question answers from memory — confidently, and sometimes wrongly. This system answers only from a corpus of 5,000 Wikipedia science articles, and reports how much of each answer its sources actually support.</p>
+
+      <div class="prose">
+        <p>Over twelve weeks I built the whole pipeline, one stage per week, with each stage reviewed before the next began.</p>
+      </div>
+
+      <div class="pipe">
+        <div class="stage">
+          <span class="tag">INGEST</span>
+          <div><p class="what">5,000 articles collected, cleaned, chunked</p>
+          <p class="how">Wikipedia API · HTML and special-character stripping · spaCy tokenisation and lemmatisation · unit-tested cleaning functions · 700-character chunks</p></div>
+        </div>
+        <div class="stage">
+          <span class="tag">INDEX</span>
+          <div><p class="what">Every chunk embedded and stored with metadata</p>
+          <p class="how">all-MiniLM-L6-v2 embeddings (384 dimensions) · ChromaDB vector store · LDA topic label and spaCy named entities attached to each chunk</p></div>
+        </div>
+        <div class="stage">
+          <span class="tag">RETRIEVE</span>
+          <div><p class="what">Top 5 passages found by meaning, not keywords</p>
+          <p class="how">Semantic search over embeddings · optional topic filtering · optional ranking boost for named entities · completes in about 2 milliseconds</p></div>
+        </div>
+        <div class="stage">
+          <span class="tag">GENERATE</span>
+          <div><p class="what">An LLM answers using only those passages</p>
+          <p class="how">System prompt forbids outside knowledge and requires a refusal when the corpus lacks the answer · rate limits, timeouts and malformed responses handled explicitly</p></div>
+        </div>
+        <div class="stage">
+          <span class="tag">VERIFY</span>
+          <div><p class="what">The answer is checked back against its own sources</p>
+          <p class="how">A support score reports how much of the answer appears in the retrieved text · refusals recognised as correct behaviour · source excerpts returned with every response</p></div>
+        </div>
+        <div class="stage">
+          <span class="tag">SERVE</span>
+          <div><p class="what">Exposed as a tested REST API</p>
+          <p class="how">FastAPI endpoints for query, corpus metadata and health · every request logged with latency · 400, 422 and 500 responses · pytest suite and concurrency test</p></div>
+        </div>
+      </div>
+
+      <div class="scroll">
+        <table>
+          <caption>Retrieval tuning. Six configurations run against a 20-query labelled set; larger chunks carry more context per result, and a deeper K gives the correct passage more chances to appear.</caption>
+          <thead><tr><th>Chunk size</th><th>K</th><th>Precision@K</th><th>Recall@K</th></tr></thead>
+          <tbody>
+            <tr><td>300 characters</td><td class="num">3</td><td class="num">0.72</td><td class="num">0.85</td></tr>
+            <tr><td>300 characters</td><td class="num">5</td><td class="num">0.65</td><td class="num">0.85</td></tr>
+            <tr><td>500 characters</td><td class="num">3</td><td class="num">0.70</td><td class="num">0.80</td></tr>
+            <tr><td>500 characters</td><td class="num">5</td><td class="num">0.65</td><td class="num">0.85</td></tr>
+            <tr><td>700 characters</td><td class="num">3</td><td class="num">0.70</td><td class="num">0.90</td></tr>
+            <tr class="best"><td>700 characters — adopted</td><td class="num">5</td><td class="num">0.70</td><td class="num">0.95</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="stats">
+        <div><p class="n">97%</p><p class="l">Relevant passage retrieved, 30 pairs</p></div>
+        <div><p class="n">7.2s</p><p class="l">Average full response</p></div>
+        <div><p class="n">6/6</p><p class="l">API tests passing</p></div>
+        <div><p class="n">5/5</p><p class="l">Concurrent requests handled</p></div>
+      </div>
+
+      <p class="insight"><b>What it taught me.</b> Building a system and knowing whether it works are two different skills. Every week I was asked to measure what I had built — Precision@K, Recall@K, grounding scores, latency, concurrency. That habit of measuring instead of assuming is the part I carry into everything else.</p>
+
+      <p class="stack">Python · ChromaDB · sentence-transformers · spaCy · scikit-learn · FastAPI · pytest · OpenRouter API</p>
+      <p class="outlinks"><a href="https://github.com/nusukhan/parallax-week1">Code &amp; full documentation</a></p>
+    </section>
+
+    <!-- 2 — FRAUD -->
+    <section class="block" id="fraud">
+      <h2>PROJECT 02 <em>Imbalanced classification</em></h2>
+
+      <div class="phead"><h3>Real-Time Credit Card Fraud Detection</h3></div>
+      <p class="pmeta">LIVE Pakistan · Machine Learning Internship · 284,807 transactions, 0.17% fraud</p>
+
+      <p class="lede">A model that labels every transaction as genuine scores 99.83% accuracy and catches zero fraud. That number is the anchor of this project: accuracy was rejected outright, and ROC-AUC with it.</p>
+
+      <div class="prose">
+        <p>Across five imbalance strategies, ROC-AUC varied by 0.002 while PR-AUC varied by 0.15 — ROC-AUC simply could not tell the strategies apart. I compared class weighting, SMOTE, ADASYN, SMOTEENN and random undersampling under stratified five-fold cross-validation, with resampling fitted on training folds only so no synthetic row could leak into validation.</p>
+        <p><strong>Class weighting won</strong> — the simplest option, with no synthetic data and no discarded rows. Of three supervised models plus an unsupervised Isolation Forest, XGBoost took the highest PR-AUC. SHAP and permutation importance were then cross-checked against each other and agreed on the top features, and a chronological split tested for drift.</p>
+      </div>
+
+      <div class="scroll">
+        <table>
+          <caption>Imbalance strategies, five-fold cross-validated. ADASYN shows why recall cannot be read alone: the best recall in the table comes with the worst precision by a wide margin.</caption>
+          <thead><tr><th>Strategy</th><th>PR-AUC</th><th>Recall</th><th>Precision</th></tr></thead>
+          <tbody>
+            <tr class="best"><td>Class weighting — adopted</td><td class="num">0.7545</td><td class="num">0.918</td><td class="num">0.061</td></tr>
+            <tr><td>SMOTE</td><td class="num">0.7519</td><td class="num">0.907</td><td class="num">0.057</td></tr>
+            <tr><td>SMOTEENN (hybrid)</td><td class="num">0.7506</td><td class="num">0.905</td><td class="num">0.055</td></tr>
+            <tr><td>ADASYN</td><td class="num">0.7476</td><td class="num">0.942</td><td class="num">0.019</td></tr>
+            <tr><td>Random undersampling</td><td class="num">0.6028</td><td class="num">0.913</td><td class="num">0.044</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="stats">
+        <div><p class="n">0.825</p><p class="l">XGBoost PR-AUC, best of four models</p></div>
+        <div><p class="n">6ms</p><p class="l">Per-transaction scoring latency</p></div>
+        <div><p class="n">154/s</p><p class="l">Throughput in the live loop</p></div>
+        <div><p class="n">4/4</p><p class="l">Flags correct, no false positives</p></div>
+      </div>
+
+      <p class="insight"><b>What it taught me: how to report a null result.</b> Cost-sensitive threshold tuning produced exactly zero saving over the default. Rather than adjust the cost assumptions until a saving appeared, I traced why — false alarms were 0.3% of total cost, and the missed frauds were missed with very low predicted probability, so no threshold could recover them. The binding constraint was model capacity, not threshold choice. I reported that instead of manufacturing a win.</p>
+
+      <p class="stack">Python · XGBoost · scikit-learn · imbalanced-learn · SHAP · pandas · joblib</p>
+      <p class="outlinks"><a href="https://github.com/nusukhan/credit-card-fraud-detection">Code &amp; results</a></p>
+    </section>
+
+    <!-- 3 — LAPTOP -->
+    <section class="block" id="laptop">
+      <h2>PROJECT 03 <em>Regression, trained and deployed</em></h2>
+
+      <div class="phead">
+        <h3>Laptop Price Prediction</h3>
+        <span class="badge">LIVE APP</span>
+      </div>
+      <p class="pmeta">Neural network regression · 1,275 laptops · deployed on Streamlit</p>
+
+      <p class="lede">An artificial neural network that estimates a laptop's price from its specifications — trained, saved with its full preprocessing pipeline, and deployed so anyone can use it in a browser.</p>
+
+      <div class="prose">
+        <p>Most of the work was feature engineering. A single screen-resolution field held four separate facts; the memory field held two drives with mixed units in one string. Both had to be parsed into usable columns. Screen width and height turned out to be <strong>0.99 correlated</strong> — the same information twice — so I combined them with screen size into a single pixels-per-inch feature. Model names had roughly two samples each across 618 categories, so that column was dropped rather than memorised.</p>
+        <p>The trained model, the label encoders and the scaler are all saved to disk, so the app loads them and predicts in about 200 milliseconds instead of retraining for every visitor.</p>
+      </div>
+
+      <div class="scroll">
+        <table>
+          <caption>The network beats the linear baseline, but only modestly — which is itself a finding. Laptop pricing is largely driven by linear relationships, and the network's advantage comes at noticeably higher computational cost.</caption>
+          <thead><tr><th>Model</th><th>R²</th><th>Mean absolute error</th></tr></thead>
+          <tbody>
+            <tr class="best"><td>Neural network (17 → 64 → 32 → 1)</td><td class="num">0.79</td><td class="num">€231</td></tr>
+            <tr><td>Linear regression (baseline)</td><td class="num">0.76</td><td class="num">€259</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <p class="insight"><b>What it taught me: theory does not always survive contact with the data.</b> The price distribution was right-skewed, so I applied the textbook log transform — and measured that it made things clearly worse, dropping R² from 0.80 to 0.24. Small errors in log space explode after the inverse transform; one prediction came out at €174,846 against a real maximum of €6,099. I removed the transform based on the experiment rather than the rule.</p>
+
+      <p class="stack">Python · TensorFlow/Keras · scikit-learn · pandas · NumPy · Streamlit</p>
+      <p class="outlinks">
+        <a href="https://laptop-price-nusrat.streamlit.app">Try the live app</a>
+        <a href="https://github.com/nusukhan/laptop-price-prediction">Code</a>
+      </p>
+    </section>
+
+    <!-- 4 — PALM -->
+    <section class="block" id="palm">
+      <h2>PROJECT 04 <em>Object detection</em></h2>
+
+      <div class="phead"><h3>Palm Tree Counter</h3></div>
+      <p class="pmeta">Aerial imagery · YOLO transfer learning · images and video</p>
+
+      <p class="lede">A detection model that counts palm trees in drone footage automatically — drawing a box around every tree and overlaying a live count on each frame.</p>
+
+      <div class="prose">
+        <p>I fine-tuned a YOLO detection model on a labelled aerial dataset using transfer learning, then built an OpenCV pipeline that reads video frame by frame, runs detection, draws the boxes and writes an annotated output video. On a single test image it found 94 trees with confidence above 0.90; across 817 video frames it counted between 22 and 38 trees per frame.</p>
+      </div>
+
+      <div class="stats">
+        <div><p class="n">0.994</p><p class="l">mAP50 on held-out images</p></div>
+        <div><p class="n">0.918</p><p class="l">mAP50-95, stricter measure</p></div>
+        <div><p class="n">817</p><p class="l">Video frames processed</p></div>
+      </div>
+
+      <p class="insight"><b>What it taught me: a model is only as general as its training data.</b> It performs near-perfectly on clean top-down imagery but misses trees in dense, ground-level views — a textbook out-of-distribution failure, because that view was never in the training set. Naming the cause matters more than the headline number, and fine-tuning on labelled data from that view is the fix.</p>
+
+      <p class="stack">Python · YOLO (Ultralytics) · OpenCV · Roboflow · Google Colab</p>
+      <p class="outlinks"><a href="https://github.com/nusukhan/palm-tree-counter">Code, model &amp; sample output</a></p>
+    </section>
+
+    <!-- 5 — DIGITS -->
+    <section class="block" id="digits">
+      <h2>PROJECT 05 <em>Computer vision</em></h2>
+
+      <div class="phead"><h3>Handwritten Digit Recognition</h3></div>
+      <p class="pmeta">Multi-class classification · full OpenCV detection pipeline</p>
+
+      <p class="lede">A system that finds handwritten digits inside an image and labels them — built from raw pixels to prediction rather than wrapping a pre-trained model.</p>
+
+      <div class="prose">
+        <p>I trained a support vector machine on 1,797 handwritten digit images and evaluated it on a held-out test set for an honest accuracy figure, alongside a confusion matrix and per-digit precision and recall. The detection side is a complete OpenCV pipeline: grayscale, blur, threshold, contour detection, crop each candidate, predict, and draw a labelled bounding box.</p>
+      </div>
+
+      <div class="stats">
+        <div><p class="n">98.89%</p><p class="l">Accuracy on 450 unseen images</p></div>
+        <div><p class="n">1,797</p><p class="l">Training images</p></div>
+        <div><p class="n">10</p><p class="l">Classes, digits 0–9</p></div>
+      </div>
+
+      <p class="insight"><b>What it taught me: the gap between lab accuracy and real input.</b> 98.89% on a clean dataset does not survive handwriting in unfamiliar styles, because the model only ever saw one kind of data. Knowing how to close that gap — more varied data, higher resolution, a convolutional model — was worth more than the score itself.</p>
+
+      <p class="stack">Python · scikit-learn · OpenCV · NumPy · Matplotlib</p>
+      <p class="outlinks"><a href="https://github.com/nusukhan/digit-recognition-opencv">Code</a></p>
+    </section>
+
+    <!-- 6 — FRUIT CNN -->
+    <section class="block" id="fruit">
+      <h2>PROJECT 06 <em>Deep learning for images</em></h2>
+
+      <div class="phead"><h3>Fruit Image Classification with a CNN</h3></div>
+      <p class="pmeta">Convolutional neural network · Fruits-360 dataset · 4 classes, 2,881 images</p>
+
+      <p class="lede">A convolutional network that names the fruit in a photograph and reports how confident it is — built to understand what a CNN actually does differently from a plain neural network.</p>
+
+      <div class="prose">
+        <p>A CNN reads an image in small patches, learning edges, colours and shapes before it learns what they add up to — which is why it outperforms a flat network on images. I built a Sequential model (rescaling, convolution, pooling, flatten, dense) and trained it on 2,160 images across apple, banana, orange and strawberry, then evaluated it on 721 held-out images with a per-class precision and recall report.</p>
+      </div>
+
+      <div class="stats">
+        <div><p class="n">100%</p><p class="l">Test accuracy — see the caveat below</p></div>
+        <div><p class="n">4</p><p class="l">Fruit classes</p></div>
+        <div><p class="n">721</p><p class="l">Held-out test images</p></div>
+      </div>
+
+      <p class="insight"><b>What it taught me: read the score before celebrating it.</b> 100% accuracy is not a sign of a great model here — it is a sign of an easy dataset. Fruits-360 images sit on a plain background at a consistent angle, so the classes are almost trivially separable. On messy real-world photos this model would do considerably worse. The honest next steps are data augmentation and more varied images, not a bigger network.</p>
+
+      <p class="stack">Python · TensorFlow/Keras · scikit-learn · NumPy · Google Colab (GPU)</p>
+      <p class="outlinks"><a href="https://github.com/nusukhan/fruit-classification-cnn">Code</a></p>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="block" id="skills">
+      <h2>SKILLS <em>Applied in the work above</em></h2>
+      <div class="matrix">
+        <div><h3>RETRIEVAL &amp; LLMs</h3><p>RAG architecture, semantic search, embeddings, prompt engineering, grounding and hallucination checks, retrieval evaluation with Precision@K and Recall@K</p></div>
+        <div><h3>MACHINE LEARNING</h3><p>Regression and classification, imbalanced data handling, neural network design, XGBoost, SVMs, object detection, transfer learning, cross-validation, baseline comparison</p></div>
+        <div><h3>EVALUATION &amp; EXPLAINABILITY</h3><p>PR-AUC and threshold analysis, cost-sensitive evaluation, SHAP and permutation importance, drift testing, confusion matrices, honest reporting of null results</p></div>
+        <div><h3>NLP &amp; VISION</h3><p>spaCy, NLTK, named entity recognition, LDA topic modelling, OpenCV pipelines, YOLO, image and video processing</p></div>
+        <div><h3>ENGINEERING</h3><p>Python, FastAPI, ChromaDB, Streamlit, pytest, REST API design, model serialisation and deployment, Git, structured logging, API key hygiene</p></div>
+        <div><h3>DATA</h3><p>pandas, NumPy, scikit-learn, matplotlib, feature engineering from unstructured fields, multicollinearity detection, unit-tested preprocessing</p></div>
+      </div>
+    </section>
+
+    <footer>
+      <a href="https://github.com/nusukhan">GitHub</a>
+      <a href="mailto:nusratanwar000@gmail.com">Email</a>
+      <span>Nusrat Anwar · AI/ML Engineer · Pakistan</span>
+    </footer>
+
+  </main>
+</div>
+
+</body>
+</html>
