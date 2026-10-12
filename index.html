@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Nusrat Anwar — AI/ML Engineer</title>
-<meta name="description" content="Nusrat Anwar — AI/ML engineer. RAG systems, imbalanced classification, computer vision. Five projects with measured results.">
+<meta name="description" content="Nusrat Anwar — AI/ML engineer. RAG systems, imbalanced classification, computer vision. Seven projects with measured results.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Source+Serif+4:opsz,wght@8..60,300;8..60,400;8..60,600&display=swap" rel="stylesheet">
@@ -165,6 +165,7 @@ footer a{text-decoration:none}
         <li><a href="#palm">Palm tree counter</a></li>
         <li><a href="#digits">Digit recognition</a></li>
         <li><a href="#fruit">Fruit classification</a></li>
+        <li><a href="#pneumonia">Pneumonia detection</a></li>
         <li><a href="#skills">Skills</a></li>
       </ol>
     </nav>
@@ -173,13 +174,13 @@ footer a{text-decoration:none}
   <main>
 
     <section class="block">
-      <h2>OVERVIEW <em>Six projects, each one measured</em></h2>
+      <h2>OVERVIEW <em>Seven projects, each one measured</em></h2>
       <p class="lede">A model that runs is not the same as a model that works. Every project below reports the numbers that prove it — and the limitation I found while looking for them.</p>
       <div class="prose">
-        <p>The work spans retrieval-augmented generation, imbalanced classification, regression with deployment, object detection and computer vision. Across all six the method is the same: build it, measure it against a held-out set, compare it to a baseline, and report what the measurement actually said rather than what I hoped it would.</p>
+        <p>The work spans retrieval-augmented generation, imbalanced classification, regression with deployment, object detection and computer vision. Across all seven the method is the same: build it, measure it against a held-out set, compare it to a baseline, and report what the measurement actually said rather than what I hoped it would.</p>
       </div>
       <div class="stats">
-        <div><p class="n">6</p><p class="l">Projects, all evaluated</p></div>
+        <div><p class="n">7</p><p class="l">Projects, all evaluated</p></div>
         <div><p class="n">2</p><p class="l">Deployed as a live app or API</p></div>
         <div><p class="n">12</p><p class="l">Weeks on the flagship build</p></div>
       </div>
@@ -413,6 +414,31 @@ footer a{text-decoration:none}
 
       <p class="stack">Python · TensorFlow/Keras · scikit-learn · NumPy · Google Colab (GPU)</p>
       <p class="outlinks"><a href="https://github.com/nusukhan/fruit-classification-cnn">Code</a></p>
+    </section>
+
+    <!-- 7 — PNEUMONIA -->
+    <section class="block" id="pneumonia">
+      <h2>PROJECT 07 <em>Medical imaging</em></h2>
+
+      <div class="phead"><h3>Pneumonia Detection from Chest X-Rays</h3></div>
+      <p class="pmeta">Convolutional neural network · FastAPI web app · Chest X-Ray Pneumonia dataset (Kaggle)</p>
+
+      <p class="lede">A CNN that reads a chest X-ray and classifies it as Normal or Pneumonia with a confidence score, served through a web interface. Built for educational purposes — not a medical diagnostic tool.</p>
+
+      <div class="prose">
+        <p>I built a Sequential CNN from scratch (three convolution-and-pooling blocks, dropout, ~4.8M parameters) and trained it on 5,216 chest X-rays. The dataset is imbalanced — pneumonia cases outnumber normal ones roughly three to one — so a model that guessed "pneumonia" every time would still score ~74% accuracy. Rather than delete data, I used class weights to make the model pay more attention to the under-represented Normal class, and rebuilt the validation set by splitting 20% off the training data because the dataset's own validation folder held only 16 images. I deliberately left out horizontal flips: the heart sits on the left of the chest, so a mirrored X-ray is anatomically impossible and would teach the model wrong patterns.</p>
+      </div>
+
+      <div class="stats">
+        <div><p class="n">91%</p><p class="l">Test accuracy, 624 unseen images</p></div>
+        <div><p class="n">0.96</p><p class="l">Pneumonia recall</p></div>
+        <div><p class="n">0.82</p><p class="l">Normal recall</p></div>
+      </div>
+
+      <p class="insight"><b>What it taught me: in medical AI, recall matters more than accuracy.</b> The 91% headline hides the real story the confusion matrix tells. Pneumonia recall of 0.96 means the model catches 96 of every 100 sick patients — and the most dangerous mistake here is a false negative, a sick patient told they are healthy. The model is weaker at identifying Normal cases (0.82 recall), exactly the kind of weakness accuracy alone would hide and precision and recall expose.</p>
+
+      <p class="stack">Python · TensorFlow/Keras · FastAPI · Uvicorn · Pillow · NumPy · Google Colab (GPU)</p>
+      <p class="outlinks"><a href="https://github.com/nusukhan/pneumonia-detection">Code &amp; web app</a></p>
     </section>
 
     <!-- SKILLS -->
